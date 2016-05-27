@@ -14,7 +14,8 @@
 							<input type="hidden" name="id" value="<?php echo $task['id']; ?>">
 							<label>Задача: </label></br>
 							<textarea class="form-control" rows="3" name="text" type="text"><?=$task['text'];?></textarea></br>
-							<input class="btn btn-info" type="submit" value="Изменить">
+							<input class="btn btn-info" type="submit" value="Изменить"></br></br>
+							<a class="btn btn-info" href="index.php" role="button">На главную</a>
 						</form>
 					</div>
 			</div>

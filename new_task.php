@@ -1,5 +1,6 @@
 <?
 require_once '/models/task.inc.php';
+session_start();
 
 $text = trim(strip_tags($_POST['text']));
 

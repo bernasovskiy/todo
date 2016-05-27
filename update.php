@@ -1,5 +1,6 @@
 <?
 require_once '/models/task.inc.php';
+session_start();
 
 	switch ($_SERVER['REQUEST_METHOD']) {
 		case 'GET':

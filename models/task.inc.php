@@ -59,5 +59,5 @@
 		public function delete() { // Удаляем выполненные задачи из БД
 			$stmt = $this->db->prepare("DELETE FROM `tasks` WHERE status = 1");
 			$stmt->execute();
-			}
+		}
 	}
