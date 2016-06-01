@@ -6,5 +6,5 @@ $id = $_POST['id'];
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$task = new Task();
 		$task = $task->done($id);
-		header('Location: /');
+		header("Location: ".$_SERVER['HTTP_REFERER']);
 	}
