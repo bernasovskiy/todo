@@ -1,17 +1,17 @@
 <?
 require_once '/models/task.inc.php';
-session_start();
+	session_start();
 
-$text = trim(strip_tags($_POST['text']));
+	if (isset($_POST['text']) && isset($_SESSION['user_id'])) {
+		$task = new Task();
 
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-		if (empty($text)){
-			$check = 'Добавьте задачу';
-			} else {
-				$task = new Task();
-				$task = $task->addition($text);
-				header('Location: /');
-			}
+		$task_text = $_POST['text'];
+		$user_id = $_SESSION['user_id'];
+
+		$task->addition($task_text, $user_id);
+		header('location: /');
+	} else {
+		$check = 'Добавьте задачу';;
 	}
 
-require_once 'view/new_task.php';
+	require_once 'view/new_task.php';

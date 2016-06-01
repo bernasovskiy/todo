@@ -7,9 +7,6 @@
 		}
 
 		public function create($login, $password) {
-//			if ($this->get_user_by_username($login)) {
-//				return "Пользователь с таким логином уже существует в базе данных";
-//			} else {
 			$stmt = $this->db->prepare("INSERT INTO `users` (login, password) VALUES (?, ?)");
 			$stmt->execute(array($login, md5($password)));
 			}

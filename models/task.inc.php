@@ -36,6 +36,12 @@
 			return $stmt->fetch();
 		}
 
+		public function get_by_author($user_id) {
+			$stmt = $this->db->prepare("SELECT * FROM tasks WHERE user_id = ?");
+			$stmt->execute(array($user_id));
+			return $stmt->fetchAll();
+		}
+
 		public function done($id) { // Отмечаем задачу как выполненную в БД
 			$stmt = $this->db->prepare("UPDATE `tasks` SET status = 1 WHERE id = ?");
 			$stmt->execute(array($id));
@@ -46,9 +52,11 @@
 			$stmt->execute(array($id));
 		}
 
-		public function addition($text){ // Добавляем задачу в БД
-			$stmt = $this->db->prepare("INSERT INTO `tasks`(text, status) VALUES(?, ?)");
-			$stmt->execute(array($text, '0'));
+		public function addition($text, $user_id){ // Добавляем задачу в БД
+			$stmt = $this->db->prepare("INSERT INTO `tasks` (text, user_id, status) VALUES (:text, :user_id, 0)");
+			$stmt->bindValue(':text', $text);
+			$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+			$stmt->execute();
 		}
 
 		public function update($id, $text) { // Изменяем данные задачи в БД
@@ -60,4 +68,5 @@
 			$stmt = $this->db->prepare("DELETE FROM `tasks` WHERE status = 1");
 			$stmt->execute();
 		}
+
 	}
