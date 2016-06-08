@@ -15,9 +15,9 @@
         <? switch ($_SESSION['login']){
             case '':
             	require_once 'index_empty.php';
-				break;
+				      break;
             case 'admin':
-				require_once 'index_admin.php';
+				      require_once 'index_admin.php';
             	break;
             default:
             	require_once 'index_default.php';

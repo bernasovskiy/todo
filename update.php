@@ -1,6 +1,8 @@
 <?
-require_once '/models/task.inc.php';
-session_start();
+	require_once '/models/task.php';
+	session_start();
+
+	define('SMARTY_DIR', str_replace("\\", "/", getcwd()).'/libs/Smarty-3.1.28/libs/');
 
 	switch ($_SERVER['REQUEST_METHOD']) {
 		case 'GET':
@@ -17,4 +19,14 @@ session_start();
 			break;
 	}
 
-require_once 'view/update.php';
+	require_once(SMARTY_DIR . 'Smarty.class.php');
+	$smarty = new Smarty();
+
+	$smarty->template_dir = '/templates/';
+	$smarty->compile_dir = '/templates_c/';
+	$smarty->config_dir = '/configs/';
+	$smarty->cache_dir = '/cache/';
+
+	$smarty->assign('task', $task);
+
+	$smarty->display('update.tpl');

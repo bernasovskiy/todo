@@ -1,6 +1,8 @@
 <?php
 	session_start();
-	require_once '/models/task.inc.php';
+	require_once '/models/task.php';
+
+	define('SMARTY_DIR', str_replace("\\", "/", getcwd()).'/libs/Smarty-3.1.28/libs/');
 
 	if (isset($_SESSION['user_id'])) {
 		$user_id = $_SESSION['user_id'];
@@ -14,5 +16,16 @@
 
 	$tasks = $task->get_all($page);
 
+	require_once(SMARTY_DIR . 'Smarty.class.php');
+	$smarty = new Smarty();
 
-require_once 'view/index.php';
+	$smarty->template_dir = '/templates/';
+	$smarty->compile_dir = '/templates_c/';
+	$smarty->config_dir = '/configs/';
+	$smarty->cache_dir = '/cache/';
+
+	$smarty->assign('tasks', $tasks);
+	$smarty->assign('user_id', $user_id);
+	$smarty->assign('pages', $pages);
+
+	$smarty->display('index.tpl');

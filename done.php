@@ -1,5 +1,5 @@
 <?
-require_once '/models/task.inc.php';
+require_once '/models/task.php';
 session_start();
 $id = $_POST['id'];
 

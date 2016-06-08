@@ -7,4 +7,3 @@
 	$session_task->add($_POST['id'], $_POST['text'], $_POST['status']);
 
 	header("Location: /");
-	//var_dump($_SESSION);

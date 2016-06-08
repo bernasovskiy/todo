@@ -1,5 +1,5 @@
 <?php
-	require_once 'db.inc.php';
+	require_once 'db.php';
 
 	class User extends DB {
 		public function __construct() {
